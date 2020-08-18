@@ -5,6 +5,11 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 class UserService extends Service {
+  constructor(ctx) {
+    super(ctx);
+    this.serviceResponse = ctx.response.Response;
+  }
+
   async register(data) {
     const { ctx } = this;
     const saltRounds = 10;
@@ -13,22 +18,13 @@ class UserService extends Service {
     try {
       const user = await ctx.model.Users.findOne({ where: { user_name: data.user_name } });
       if (user) {
-        return {
-          success: false,
-          message: '此帳號已被註冊',
-        };
+        return this.serviceResponse.errorMsg('此帳號已被註冊');
       }
 
       await ctx.model.Users.create({ ...data, password: hash });
-      return {
-        success: true,
-        message: '成功',
-      };
+      return this.serviceResponse.success();
     } catch (e) {
-      return {
-        success: false,
-        message: '失敗',
-      };
+      return this.serviceResponse.errorMsg('系統錯誤');
     }
   }
 
@@ -37,16 +33,10 @@ class UserService extends Service {
     const user = await ctx.model.Users.findOne({ where: { user_name: data.user_name } });
 
     if (user === null) {
-      return {
-        success: false,
-        message: '找不到該使用者',
-      };
+      return this.serviceResponse.errorMsg('找不到該使用者');
     }
     if (!bcrypt.compareSync(data.password, user.password)) {
-      return {
-        success: false,
-        message: '密碼錯誤',
-      };
+      return this.serviceResponse.errorMsg('密碼錯誤');
     }
 
     const token = jwt.sign({
@@ -58,11 +48,7 @@ class UserService extends Service {
     app.redis.set(user.id, token);
     app.redis.expire(user.id, 60 * 60);
 
-    return {
-      success: true,
-      message: '成功',
-      token,
-    };
+    return this.serviceResponse.successMsgAndData('成功', { token });
   }
 }
 
