@@ -14,7 +14,7 @@ class UserController extends Controller {
       gender: { type: 'int', required: false, values: [ 1, 2, 3 ] },
     }, ctx.request.body);
 
-    console.log('error:', errors);
+
     if (errors) {
       ctx.body = {
         success: false,
@@ -31,6 +31,11 @@ class UserController extends Controller {
     const { ctx } = this;
     const { user_name, password } = ctx.request.body;
     ctx.body = await ctx.service.user.login({ user_name, password });
+  }
+
+  async test() {
+    const { ctx } = this;
+    ctx.body = ctx.userInfo;
   }
 }
 
