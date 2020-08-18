@@ -1,7 +1,7 @@
 /* eslint-disable strict */
+const { USER } = require('../common/role.js');
 module.exports = app => {
   const { INTEGER, STRING, DECIMAL } = app.Sequelize;
-
   const User = app.model.define('users', {
     id: {
       type: INTEGER,
@@ -31,6 +31,10 @@ module.exports = app => {
     },
     city: {
       type: STRING(255),
+    },
+    auth: {
+      type: DECIMAL,
+      defaultValue: USER,
     },
   });
 
