@@ -17,7 +17,6 @@ class UserController extends Controller {
       user_name: { type: 'string', required: true, desc: '帳號' },
       password: { type: 'string', required: true, desc: '密碼' },
       nickname: { type: 'string', required: true, desc: '暱稱' },
-      gender: { type: 'int', required: false, values: [ 1, 2, 3 ] },
     }, ctx.request.body);
 
 

@@ -1,33 +1,68 @@
 # blog
 
-
-
-## QuickStart
-
-<!-- add docs here for user -->
-
-see [egg docs][egg] for more detail.
-
 ### Development
+1. 執行專安前請先安裝依賴
 
 ```bash
 $ npm i
-$ npm run dev
-$ open http://localhost:7001/
 ```
 
-### Deploy
+2. 需要先開啟mysql & redis (請先安裝docker & docker-compose)
 
 ```bash
-$ npm start
-$ npm stop
+$ npm run docker-up
+```
+3. 打開專案
+
+```bash
+$ npm run dev
 ```
 
-### npm scripts
+4. 執行migration(可選)
+```bash
+$ npm run db:mi
+```
+5. 添加假資料(可選)
+```bash
+$ npm run db:seed
+```
 
-- Use `npm run lint` to check code style.
-- Use `npm test` to run unit test.
-- Use `npm run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
 
+## API
 
-[egg]: https://eggjs.org
+## 註冊
+
+```json
+POST {{host}}/register
+```
+#### reqeust
+```json
+  user_name: 'leowang'
+  password: 'aa1111'
+  nickname: 'leowang'
+  picture: null
+  city : '台中'
+```
+
+## 登入
+
+```json
+POST {{host}}/login
+```
+#### reqeust
+```json
+  user_name: 'leowang'
+  password: 'aa1111'
+```
+
+### 測試token
+
+```json
+GET {{host}}/test
+```
+
+#### header 
+```json
+  Authorization: {{token}}
+```
+

@@ -41,7 +41,13 @@
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
-    "autod": "autod"
+    "autod": "autod",
+    "db:mi": "npx sequelize db:migrate",
+    "db:mi:undo": "npx sequelize db:migrate:undo",
+    "db:seed": "npx sequelize db:seed:all",
+    "db:seed:undo": "npx sequelize db:seed:undo",
+    "docker-up": "docker-compose up",
+    "docker-down": "docker-compose down"
   },
   "ci": {
     "version": "10"
