@@ -44,6 +44,13 @@ module.exports = {
       },
       updated_at: Sequelize.DATE,
       created_at: Sequelize.DATE,
+    }, {
+      tableName: 'users',
+      charset: 'utf8mb4',
+      collate: 'utf8mb4_bin',
+      define: {
+        timestamps: true,
+      },
     });
   },
 

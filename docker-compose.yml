@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+  mysql:
+    image: mysql/mysql-server:5.7
+    container_name: egg-blog-mysql
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: 'egg-blog'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 123456
+    ports:
+      - 3308:3306
+    volumes:
+      - my-datavolume:/var/lib/mysql
+  redis:
+    image: redis:5.0.5-alpine  
+    container_name: egg-blog-redis  
+    command: redis-server
+    ports:
+      - 6379:6379
+volumes:
+  my-datavolume:
