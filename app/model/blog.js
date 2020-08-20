@@ -1,6 +1,6 @@
 /* eslint-disable strict */
 module.exports = app => {
-  const { INTEGER, TEXT, DATE, STRING } = app.Sequelize;
+  const { INTEGER, TEXT, DATE, STRING, NOW } = app.Sequelize;
   const Blog = app.model.define('blogs', {
     id: {
       type: INTEGER,
@@ -22,12 +22,14 @@ module.exports = app => {
     },
     updated_at: {
       type: DATE,
-      defaultValue: new Date(),
+      defaultValue: NOW,
     },
     created_at: {
       type: DATE,
-      defaultValue: new Date(),
+      defaultValue: NOW,
     },
+  }, {
+    timestamps: false,
   });
   return Blog;
 };

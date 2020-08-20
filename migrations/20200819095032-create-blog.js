@@ -35,11 +35,11 @@ module.exports = {
       },
       updated_at: {
         type: Sequelize.DATE,
-        defaultValue: new Date(),
+        defaultValue: Sequelize.NOW,
       },
       created_at: {
         type: Sequelize.DATE,
-        defaultValue: new Date(),
+        defaultValue: Sequelize.NOW,
       },
     });
   },
