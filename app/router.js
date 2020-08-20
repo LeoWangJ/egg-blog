@@ -11,4 +11,5 @@ module.exports = app => {
 
   router.get('/blog/list', controller.blog.list);
   router.post('/blog/create', app.middleware.vertifyToken(), controller.blog.create);
+  router.put('/blog/update', app.middleware.vertifyToken(), controller.blog.update);
 };

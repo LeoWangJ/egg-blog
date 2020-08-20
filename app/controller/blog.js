@@ -20,6 +20,12 @@ class BlogController extends Controller {
     ctx.body = await ctx.service.blog.create({ title, content });
   }
 
+  async update() {
+    const { ctx } = this;
+    const { id, title, content } = ctx.request.body;
+    ctx.body = await ctx.service.blog.update({ id, title, content });
+  }
+
 }
 
 module.exports = BlogController;

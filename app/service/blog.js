@@ -23,6 +23,7 @@ class BlogService extends Service {
       const result = await ctx.model.Blog.findAll(queryOptions);
       return this.serviceResponse.successData(result);
     } catch (e) {
+      console.log(e);
       return this.serviceResponse.errorData([]);
     }
   }
@@ -35,6 +36,29 @@ class BlogService extends Service {
     } catch (e) {
       return this.serviceResponse.error();
     }
+  }
+
+  async update(data) {
+    const { ctx } = this;
+    const blog = await this.getBlog(data.id);
+
+    if (blog.user_id !== ctx.userInfo.user.id) {
+      return this.serviceResponse.errorMsg('未有權限');
+    }
+    if (blog === null) {
+      return this.serviceResponse.errorMsg('未找到該blog id');
+    }
+    try {
+      await blog.update({ ...data });
+      return this.serviceResponse.successMsg('成功');
+    } catch (e) {
+      return this.serviceResponse.error();
+    }
+  }
+
+  async getBlog(id = null) {
+    const { ctx } = this;
+    return await ctx.model.Blog.findOne({ where: { id } });
   }
 }
 
