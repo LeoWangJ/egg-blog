@@ -11,7 +11,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('blog', [{
+    await queryInterface.bulkInsert('blogs', [{
       userId: 14,
       title: '妳好',
       content: '大家好',

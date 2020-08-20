@@ -18,6 +18,12 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
       title: {
         type: Sequelize.STRING(20),
