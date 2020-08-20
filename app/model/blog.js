@@ -1,6 +1,6 @@
 /* eslint-disable strict */
 module.exports = app => {
-  const { INTEGER, TEXT, DATE, STRING } = app.sequelize;
+  const { INTEGER, TEXT, DATE, STRING } = app.Sequelize;
   const Blog = app.model.define('blogs', {
     id: {
       type: INTEGER,
