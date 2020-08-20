@@ -12,19 +12,19 @@ module.exports = {
      * }], {});
     */
     await queryInterface.bulkInsert('blogs', [{
-      userId: 14,
+      user_id: 14,
       title: '妳好',
       content: '大家好',
       updated_at: new Date(),
       created_at: new Date(),
     }, {
-      userId: 14,
+      user_id: 14,
       title: '妳好1',
       content: '大家好1',
       updated_at: new Date(),
       created_at: new Date(),
     }, {
-      userId: 14,
+      user_id: 14,
       title: '妳好2',
       content: '大家好2',
       updated_at: new Date(),

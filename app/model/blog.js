@@ -8,7 +8,7 @@ module.exports = app => {
       autoIncrement: true,
       allowNull: false,
     },
-    userId: {
+    user_id: {
       type: INTEGER,
       allowNull: false,
     },
